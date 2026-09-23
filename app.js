@@ -139,10 +139,12 @@ function checkTrip(){render()}
 function lottery(){
  if(state.tickets<1){setStatus("抽奖券不够。旅行回来会获得抽奖券。");return}
  state.tickets--;
+ el("#lotteryArt")?.classList.add("show");
  const prizes=[shop[0],shop[2],shop[4],shop[1],shop[3]];
  const prize=prizes[Math.floor(Math.random()*prizes.length)];
  state.bags.push({...prize,fromLottery:true});
  setStatus("🎟️ 抽中了 "+prize.name+"！");
+ setTimeout(()=>el("#lotteryArt")?.classList.remove("show"),1200);
  save();
 }
 function format(ms){
@@ -172,3 +174,6 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)render()})
 setupMusic();
 if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});
 render();
+
+
+el("#menuArt")?.addEventListener("click",()=>setStatus("菜单：准备、商店、相册和旅行记录都在下方。"));
