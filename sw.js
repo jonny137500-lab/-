@@ -3,7 +3,14 @@ const LOCAL_ASSETS=["./","./index.html","./style.css","./app.js","./manifest.web
 const REMOTE_ASSETS=[
  "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/audio/bgm.mp3",
  "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/ui/haikei_niwa.png",
- "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/role/1/role1.png"
+ "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/role/1/role1.png",
+ "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/role/2/role2.png",
+ "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/role/4/role4.png",
+ "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/other/MainOut_mail_tuuti.png",
+ "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/ui/haikei_niwa_akari.png",
+ "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/ui/icon_menu_92_96.png",
+ "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/ui/lottery_dodai.png",
+ "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/ui/lottery_ball_01.png"
 ];
 const ONLINE_ASSET="https://www.hit-point.co.jp/games/tabikaeru/img/banner_tabikaeru.png";
 self.addEventListener("install",event=>{
