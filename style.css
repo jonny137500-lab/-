@@ -60,3 +60,9 @@ nav{display:flex;border-bottom:1px solid #ddceb0;position:sticky;top:62px;z-inde
 .frog{width:107px;height:104px;background-image:url("https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/role/1/role1.png");background-repeat:no-repeat;background-size:1818px 123px;background-position:-1px -1px;left:44%;bottom:98px;filter:drop-shadow(0 5px 2px #0002);font-size:0}
 .frog-body,.frog .eye,.frog .mouth{display:none}
 .frog.travel{transform:translate(180px,-100px) rotate(-10deg) scale(.45);opacity:.1}
+
+
+/* Real UI assets from the authorized GitHub TravelFrog source */
+.brand img{display:block;width:112px;height:32px;object-fit:contain;object-position:left center}.brand small{display:block;margin-top:-2px}
+.clover-pill{display:flex;align-items:center;gap:5px}.clover-pill img{width:22px;height:22px;object-fit:contain}
+nav button{display:flex;align-items:center;justify-content:center;gap:5px}nav button img{width:25px;height:25px;object-fit:contain}
