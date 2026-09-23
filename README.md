@@ -15,6 +15,12 @@
 - 📱 PWA / Service Worker
 - 🌐 无后端、无 CDN、主要逻辑离线运行
 
+## TravelFrog source 素材已完整接入
+
+已按你提供的授权把 `jsmask/TravelFrog` source repo 中可直接用于网页的素材接入：庭院/室内背景、青蛙和伙伴 sprite、信箱、三叶草、菜单/帮助/退出/里屋图标、抽奖台与 5 个抽奖球、加载/开始图、名称/称号/图鉴 UI、提示图以及 `se06.mp3` 音效。菜单按钮还能打开素材库逐项检查。
+
+Cocos Creator 的 `mail.prefab`、`role_book.prefab`、`role_made.prefab`、`role_write.prefab` 不能直接由纯 HTML/JS 执行，所以没有假装“转换”它们；对应网页功能继续由本项目自己的 JS 实现。
+
 ## 网络素材
 
 项目加入了 Hit-Point 官方《旅かえる》宣传图作为视觉素材，并在 Service Worker 中尝试缓存该图片，以便首次在线打开后继续离线使用。
