@@ -3,6 +3,7 @@ const defaultState={clover:80,tickets:3,bags:[],postcards:[],souvenirs:[],trip:n
 let state=load();
 let selected={food:null,charm:null,cloth:null};
 const BGM_SRC="https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/audio/bgm.mp3";
+const SE_SRC="https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/audio/se06.mp3";
 let musicOn=localStorage.getItem("travel-frog-music")!=="off";
 
 const destinations=[
@@ -63,7 +64,7 @@ function prepareHTML(){
  if(state.trip)return '<div class="empty">青蛙正在旅行，等它回来再准备下一次吧。</div>';
  const foods=state.bags.filter(x=>x.kind==="food"), charms=state.bags.filter(x=>x.kind==="charm"), clothes=state.bags.filter(x=>x.kind==="cloth");
  const chosen=selected;
- return '<div class="notice">核心玩法参考「したく（准备）」：准备物品会影响旅行目的地和路线。</div>'+
+ return '<div class="notice">核心玩法参考「したく（准备）」：准备物品会影响旅行目的地和路线。</div><div class="source-prep"><img src="https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/other/hi_syokudai_01.png" alt=""><span>旅途准备提示：带上合适的便当、护身符或用品。</span></div>'+
  '<div class="card" style="margin:14px"><h3>① 便当</h3>'+choiceHTML(foods,"food")+
  '<h3 style="margin-top:14px">② 护身符</h3>'+choiceHTML(charms,"charm")+
  '<h3 style="margin-top:14px">③ 其他用品</h3>'+choiceHTML(clothes,"cloth")+
@@ -136,10 +137,13 @@ function finishTrip(){
  setStatus("🐸 回家啦！带回了 "+loot+"，还有 "+bonus+" 🍀。");
 }
 function checkTrip(){render()}
+function playSE(){try{const a=new Audio(SE_SRC);a.volume=.32;a.play().catch(()=>{})}catch{}}
 function lottery(){
  if(state.tickets<1){setStatus("抽奖券不够。旅行回来会获得抽奖券。");return}
  state.tickets--;
- el("#lotteryArt")?.classList.add("show");
+ const ball=Math.floor(Math.random()*5)+1;
+ const img=el("#lotteryBall"); if(img)img.src="https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/ui/lottery_ball_0"+ball+".png";
+ el("#lotteryArt")?.classList.add("show"); playSE();
  const prizes=[shop[0],shop[2],shop[4],shop[1],shop[3]];
  const prize=prizes[Math.floor(Math.random()*prizes.length)];
  state.bags.push({...prize,fromLottery:true});
@@ -176,4 +180,5 @@ if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catc
 render();
 
 
-el("#menuArt")?.addEventListener("click",()=>setStatus("菜单：准备、商店、相册和旅行记录都在下方。"));
+el("#menuArt")?.addEventListener("click",()=>{const d=el("#sourceDrawer");d?.classList.add("open");d?.setAttribute("aria-hidden","false")});
+el("#closeDrawer")?.addEventListener("click",()=>{const d=el("#sourceDrawer");d?.classList.remove("open");d?.setAttribute("aria-hidden","true")});
