@@ -10,12 +10,12 @@ const destinations=[
 {name:"古老的寺院",emoji:"⛩️",cost:70,time:32000,need:"charm",loot:["🧿 护身符","📿 小念珠"]}
 ];
 const shop=[
-{name:"🍞 蜂蜜面包",price:18,kind:"food",desc:"便携的旅行便当。"},
-{name:"🥪 三明治",price:28,kind:"food",desc:"更适合长途旅行。"},
-{name:"🔔 幸运铃",price:35,kind:"charm",desc:"旅行时带来好运。"},
-{name:"🍀 四叶草护符",price:55,kind:"charm",desc:"稀有的幸运物。"},
-{name:"🧣 手帕",price:22,kind:"cloth",desc:"轻便又实用。"},
-{name:"🗺️ 小地图",price:45,kind:"map",desc:"帮助探索新的地方。"}
+{name:"蜂蜜面包",icon:"🍞",price:18,kind:"food",desc:"便携的旅行便当。"},
+{name:"三明治",icon:"🥪",price:28,kind:"food",desc:"更适合长途旅行。"},
+{name:"幸运铃",icon:"🔔",price:35,kind:"charm",desc:"旅行时带来好运。"},
+{name:"四叶草护符",icon:"🍀",price:55,kind:"charm",desc:"稀有的幸运物。"},
+{name:"手帕",icon:"🧣",price:22,kind:"cloth",desc:"轻便又实用。"},
+{name:"小地图",icon:"🗺️",price:45,kind:"map",desc:"帮助探索新的地方。"}
 ];
 
 function load(){
@@ -54,13 +54,13 @@ function homeHTML(){
  return '<div class="notice">🐸 青蛙回家后会休息一会儿。去「准备」选择便当和护身符，再完成准备让它出发。<br>三叶草可以在花园里收集。</div>'+
  '<div class="grid"><div class="card"><div class="photo">🍀</div><h3>收集三叶草</h3><p>庭院里会长出新的三叶草。</p><button class="primary" onclick="harvest()">收集 +'+(2+Math.floor(Math.random()*5))+' 🍀</button></div>'+
  '<div class="card"><div class="photo">🎟️</div><h3>抽奖</h3><p>用抽奖券换取旅行用品。</p><button class="secondary" onclick="lottery()">抽一次（1券）</button></div>'+
- '<div class="card"><div class="photo">📖</div><h3>旅行记录</h3><p>已完成 '+state.log.length+' 次旅行。</p><button class="secondary" onclick="renderTab("album")">打开相册</button></div></div>';
+ '<div class="card"><div class="photo">📖</div><h3>旅行记录</h3><p>已完成 '+state.log.length+' 次旅行。</p><button class="secondary" onclick="renderTab('album')">打开相册</button></div></div>';
 }
 function prepareHTML(){
  if(state.trip)return '<div class="empty">青蛙正在旅行，等它回来再准备下一次吧。</div>';
  const foods=state.bags.filter(x=>x.kind==="food"), charms=state.bags.filter(x=>x.kind==="charm"), clothes=state.bags.filter(x=>x.kind==="cloth");
  const chosen=selected;
- return '<div class="notice">原版的核心思路是「したく（准备）」：准备物品会影响旅行目的地和路线。</div>'+
+ return '<div class="notice">核心玩法参考「したく（准备）」：准备物品会影响旅行目的地和路线。</div>'+
  '<div class="card" style="margin:14px"><h3>① 便当</h3>'+choiceHTML(foods,"food")+
  '<h3 style="margin-top:14px">② 护身符</h3>'+choiceHTML(charms,"charm")+
  '<h3 style="margin-top:14px">③ 其他用品</h3>'+choiceHTML(clothes,"cloth")+
