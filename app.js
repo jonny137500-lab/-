@@ -2,7 +2,7 @@ const KEY="travel-frog-offline-v2";
 const defaultState={clover:80,tickets:3,bags:[],postcards:[],souvenirs:[],trip:null,harvested:0,log:[]};
 let state=load();
 let selected={food:null,charm:null,cloth:null};
-const BGM_SRC="./Travel_Frog_旅行青蛙_旅かえる_BGM_背景音乐_KLICKAUD.mp3";
+const BGM_SRC="https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/audio/bgm.mp3";
 let musicOn=localStorage.getItem("travel-frog-music")!=="off";
 
 const destinations=[
