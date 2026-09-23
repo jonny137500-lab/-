@@ -3,27 +3,55 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f7e7b8">
+<meta name="theme-color" content="#ead9a7">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="style.css">
-<title>旅行青蛙 · Offline</title>
+<title>旅行青蛙 · Offline Edition</title>
 </head>
 <body>
 <div id="app">
-<header class="topbar"><div><b>旅行青蛙</b><small>OFFLINE EDITION</small></div><button id="resetBtn" class="ghost">重置存档</button></header>
+<header class="topbar">
+  <div class="brand"><b>旅行青蛙</b><small>OFFLINE EDITION</small></div>
+  <div class="top-actions">
+    <span class="clover-pill">🍀 <b id="clover">0</b></span>
+    <button id="resetBtn" class="ghost">重置</button>
+  </div>
+</header>
+
 <main>
 <section class="scene">
-<div class="sky"></div><div class="hill h1"></div><div class="hill h2"></div>
-<div class="room">
-<div class="window"><div class="view">☀️</div></div>
-<div class="table"><div class="mat"></div><div id="frog" class="frog">🐸</div><div class="pot">🍵</div></div>
-</div>
-<div id="status" class="bubble">青蛙正在家里休息。</div>
+  <img class="official-banner" src="https://www.hit-point.co.jp/games/tabikaeru/img/banner_tabikaeru.png" alt="旅かえる 官方宣传图">
+  <div class="garden-sky"></div>
+  <div class="mist"></div>
+  <div class="tree trunk-left"></div>
+  <div class="tree trunk-right"></div>
+  <div class="leaf-cluster leaf-a"></div><div class="leaf-cluster leaf-b"></div>
+  <div class="wood-house">
+    <div class="roof"></div>
+    <div class="window"><span>☀</span></div>
+    <div class="shelf"><span>📚</span><span>🍵</span><span>🌿</span></div>
+    <div class="bed"><div class="pillow"></div></div>
+    <div id="frog" class="frog">🐸</div>
+    <div class="door"></div>
+    <div class="floor"></div>
+  </div>
+  <div class="mailbox">✉</div>
+  <div id="status" class="bubble">青蛙正在家里休息。</div>
 </section>
+
 <section class="panel">
-<div class="stats"><span>🍀 三叶草 <b id="clover">0</b></span><span>🎒 背包 <b id="bagCount">0</b></span><span>📮 明信片 <b id="postcards">0</b></span></div>
-<nav><button class="tab active" data-tab="home">家</button><button class="tab" data-tab="shop">商店</button><button class="tab" data-tab="bag">背包</button><button class="tab" data-tab="album">相册</button></nav>
-<div id="content"></div>
+  <div class="stats">
+    <span>🎒 背包 <b id="bagCount">0</b></span>
+    <span>🎟️ 抽奖券 <b id="tickets">0</b></span>
+    <span>📮 明信片 <b id="postcards">0</b></span>
+  </div>
+  <nav>
+    <button class="tab active" data-tab="home">🏠 家</button>
+    <button class="tab" data-tab="prepare">🎒 准备</button>
+    <button class="tab" data-tab="shop">🛍️ 商店</button>
+    <button class="tab" data-tab="album">📷 相册</button>
+  </nav>
+  <div id="content"></div>
 </section>
 </main>
 </div>
