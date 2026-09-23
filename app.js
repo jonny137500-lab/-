@@ -2,6 +2,8 @@ const KEY="travel-frog-offline-v2";
 const defaultState={clover:80,tickets:3,bags:[],postcards:[],souvenirs:[],trip:null,harvested:0,log:[]};
 let state=load();
 let selected={food:null,charm:null,cloth:null};
+const BGM_SRC="./Travel_Frog_旅行青蛙_旅かえる_BGM_背景音乐_KLICKAUD.mp3";
+let musicOn=localStorage.getItem("travel-frog-music")!=="off";
 
 const destinations=[
 {name:"温暖的田野",emoji:"🌻",cost:20,time:12000,need:"food",loot:["🌱 四叶草","🍞 小面包"]},
@@ -144,10 +146,24 @@ function format(ms){
  let m=Math.floor(s/60),sec=s%60;
  return m+"分"+sec+"秒";
 }
+function setupMusic(){
+ const audio=el("#bgm"),btn=el("#musicBtn");
+ if(!audio||!btn)return;
+ audio.volume=0.28;
+ const update=()=>{btn.textContent=audio.paused?"🔇 音乐":"🔊 音乐";};
+ btn.addEventListener("click",async()=>{
+   if(audio.paused){try{await audio.play();musicOn=true;localStorage.setItem("travel-frog-music","on")}catch{setStatus("点击一次「音乐」即可播放 BGM。")}}
+   else{audio.pause();musicOn=false;localStorage.setItem("travel-frog-music","off")}
+   update();
+ });
+ if(musicOn)document.addEventListener("pointerdown",async()=>{if(audio.paused){try{await audio.play();update()}catch{}}},{once:true});
+ update();
+}
 document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>renderTab(b.dataset.tab)));
 el("#resetBtn").onclick=()=>{if(confirm("确定清空离线存档吗？")){localStorage.removeItem(KEY);state={...defaultState,bags:[],postcards:[],souvenirs:[],log:[]};render();setStatus("存档已重置。")}};
 setInterval(()=>{if(state.trip)render()},1000);
 window.addEventListener("focus",render);
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)render()});
+setupMusic();
 if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});
 render();
