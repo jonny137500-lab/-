@@ -6,10 +6,10 @@ const BGM_SRC="./Travel_Frog_旅行青蛙_旅かえる_BGM_背景音乐_KLICKAUD
 let musicOn=localStorage.getItem("travel-frog-music")!=="off";
 
 const destinations=[
-{name:"温暖的田野",emoji:"🌻",cost:20,time:12000,need:"food",loot:["🌱 四叶草","🍞 小面包"]},
-{name:"森林小径",emoji:"🌲",cost:35,time:18000,need:"charm",loot:["🍄 森林蘑菇","🍂 秋叶"]},
-{name:"海边小镇",emoji:"🌊",cost:50,time:24000,need:"cloth",loot:["🐚 贝壳","🎐 海边纪念品"]},
-{name:"古老的寺院",emoji:"⛩️",cost:70,time:32000,need:"charm",loot:["🧿 护身符","📿 小念珠"]}
+{name:"温暖的田野",emoji:"🌻",scene:"meadow",cost:20,time:12000,need:"food",loot:["🌱 四叶草","🍞 小面包"]},
+{name:"森林小径",emoji:"🌲",scene:"forest",cost:35,time:18000,need:"charm",loot:["🍄 森林蘑菇","🍂 秋叶"]},
+{name:"海边小镇",emoji:"🌊",scene:"sea",cost:50,time:24000,need:"cloth",loot:["🐚 贝壳","🎐 海边纪念品"]},
+{name:"古老的寺院",emoji:"⛩️",scene:"temple",cost:70,time:32000,need:"charm",loot:["🧿 护身符","📿 小念珠"]}
 ];
 const shop=[
 {name:"蜂蜜面包",icon:"🍞",price:18,kind:"food",desc:"便携的旅行便当。"},
@@ -30,11 +30,11 @@ function load(){
 function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
 function el(s){return document.querySelector(s)}
 function setStatus(t){const x=el("#status");if(x)x.textContent=t}
-function render(){
+function updateMail(){const n=state.postcards.length;const box=el("#mailbox");const badge=el("#mailBadge");if(box){box.classList.toggle("has-mail",n>0);if(badge)badge.textContent=n>9?"9+":n}}\nfunction render(){
  el("#clover").textContent=state.clover;
  el("#bagCount").textContent=state.bags.length;
  el("#tickets").textContent=state.tickets;
- el("#postcards").textContent=state.postcards.length;
+ el("#postcards").textContent=state.postcards.length; updateMail();
  if(state.trip && Date.now()-state.trip.started>=state.trip.time) finishTrip();
  const tab=document.querySelector(".tab.active")?.dataset.tab||"home";
  renderTab(tab);
@@ -76,10 +76,14 @@ function choiceHTML(arr,kind){
 function shopHTML(){
  return '<div class="grid">'+shop.map((x,i)=>'<div class="card"><div class="photo">'+x.icon+'</div><h3>'+x.name+'</h3><p>'+x.desc+'</p><b>🍀 '+x.price+'</b><button class="primary '+(state.clover<x.price?"disabled":"")+'" onclick="buy('+i+')">购买</button></div>').join("")+'</div>';
 }
+function postcardHTML(p){
+ const scene=p.scene||"meadow";
+ return '<article class="postcard"><div class="pc-scene destination-'+scene+'"><span>'+p.emoji+'</span><div class="pc-stamp">🍀</div></div><div class="pc-title">'+p.title+'</div><div class="pc-note">'+p.text+'</div></article>';
+}
 function albumHTML(){
  const photos=state.postcards;
- if(!photos.length)return '<div class="empty">还没有明信片。让青蛙出去旅行吧。</div>';
- return '<div class="grid">'+photos.map(p=>'<div class="card"><div class="photo">'+p.emoji+'</div><h3>'+p.title+'</h3><p>'+p.text+'</p><small>'+new Date(p.date).toLocaleString()+'</small></div>').join("")+'</div>';
+ if(!photos.length)return '<div class="empty">📮 邮箱里还没有明信片。让青蛙出去旅行吧。</div>';
+ return '<div class="mail-note">📮 青蛙寄回来的明信片会自动保存。每次旅行的地点、纪念品和日期都会记录。</div><div class="grid">'+photos.map(p=>'<div class="card">'+postcardHTML(p)+'<small>'+new Date(p.date).toLocaleString()+'</small></div>').join("")+'</div>';
 }
 function selectItem(kind,i){selected[kind]=i;renderTab("prepare")}
 function harvest(){
@@ -121,7 +125,7 @@ function finishTrip(){
  const loot=t.loot[Math.floor(Math.random()*t.loot.length)];
  const bonus=12+Math.floor(Math.random()*18);
  state.souvenirs.push(loot);
- state.postcards.unshift({title:t.destination+"的明信片",text:"青蛙旅行回来了，带回："+loot+"。",emoji:t.emoji,date:Date.now()});
+ state.postcards.unshift({title:t.destination+"的明信片",text:"旅行回来了，带回："+loot+"。",emoji:t.emoji,scene:destinations.find(d=>d.name===t.destination)?.scene||"meadow",date:Date.now()});
  state.clover+=bonus;
  state.tickets+=1;
  state.log.unshift(t.destination);
