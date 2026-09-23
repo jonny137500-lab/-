@@ -1,5 +1,10 @@
 const CACHE="travel-frog-offline-v2";
 const LOCAL_ASSETS=["./","./index.html","./style.css","./app.js","./manifest.webmanifest","./Travel_Frog_旅行青蛙_旅かえる_BGM_背景音乐_KLICKAUD.mp3"];
+const REMOTE_ASSETS=[
+ "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/audio/bgm.mp3",
+ "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/ui/haikei_niwa.png",
+ "https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/role/1/role1.png"
+];
 const ONLINE_ASSET="https://www.hit-point.co.jp/games/tabikaeru/img/banner_tabikaeru.png";
 self.addEventListener("install",event=>{
  event.waitUntil((async()=>{
