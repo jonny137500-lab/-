@@ -55,7 +55,7 @@ function homeHTML(){
    return '<div class="notice">🐸 正在前往 <b>'+state.trip.destination+'</b>。<br>还需要 <b>'+format(left)+'</b>。<br><small>关闭网页也不会暂停旅行。</small></div>'+
    '<div class="grid"><div class="card"><div class="photo">'+state.trip.emoji+'</div><h3>旅途中</h3><p>带着 '+state.trip.used+' 出发。回家后可能获得照片、纪念品和三叶草。</p><button class="secondary" onclick="checkTrip()">检查是否回家</button></div></div>';
  }
- return '<div class="notice">🐸 青蛙回家后会休息一会儿。去「准备」选择便当和护身符，再完成准备让它出发。<br>三叶草可以在花园里收集。</div>'+
+ return '<div class="notice">🐸 青蛙回家后会休息一会儿。去「准备」选择便当和护身符，再完成准备让它出发。<br>三叶草可以在花园里收集。</div><div id="lotteryArt" class="lottery-art"><img class="lottery-base" src="https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/ui/lottery_dodai.png" alt=""><img id="lotteryBall" class="lottery-ball" src="https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/ui/lottery_ball_01.png" alt=""></div>'+
  '<div class="grid"><div class="card"><div class="photo">🍀</div><h3>收集三叶草</h3><p>庭院里会长出新的三叶草。</p><button class="primary" onclick="harvest()">收集 +'+(2+Math.floor(Math.random()*5))+' 🍀</button></div>'+
  '<div class="card"><div class="photo">🎟️</div><h3>抽奖</h3><p>用抽奖券换取旅行用品。</p><button class="secondary" onclick="lottery()">抽一次（1券）</button></div>'+
  '<div class="card"><div class="photo">📖</div><h3>旅行记录</h3><p>已完成 '+state.log.length+' 次旅行。</p><button class="secondary" onclick="renderTab('album')">打开相册</button></div></div>';
