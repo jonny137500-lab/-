@@ -30,7 +30,8 @@ function load(){
 function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
 function el(s){return document.querySelector(s)}
 function setStatus(t){const x=el("#status");if(x)x.textContent=t}
-function updateMail(){const n=state.postcards.length;const box=el("#mailbox");const badge=el("#mailBadge");if(box){box.classList.toggle("has-mail",n>0);if(badge)badge.textContent=n>9?"9+":n}}\nfunction render(){
+function updateMail(){const n=state.postcards.length;const box=el("#mailbox");const badge=el("#mailBadge");if(box){box.classList.toggle("has-mail",n>0);if(badge)badge.textContent=n>9?"9+":n}}
+function render(){
  el("#clover").textContent=state.clover;
  el("#bagCount").textContent=state.bags.length;
  el("#tickets").textContent=state.tickets;
