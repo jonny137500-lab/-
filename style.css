@@ -52,3 +52,11 @@ nav{display:flex;border-bottom:1px solid #ddceb0;position:sticky;top:62px;z-inde
 .pc-field{min-height:130px;border-left:1px dashed #9b8564;background:#fbf2db;padding:12px}
 .destination-meadow{background:linear-gradient(#b9d9d0,#dce2ae 52%,#7f9c62)}.destination-forest{background:linear-gradient(#b5d0cb,#d5d7a2 55%,#718b62)}.destination-sea{background:linear-gradient(#9ccbd3,#e5d9ae 56%,#83a46c)}.destination-temple{background:linear-gradient(#c3d5cf,#e0d2aa 55%,#7b9068)}
 .mail-note{margin:12px 14px;padding:11px 13px;background:#f5e8c8;border-left:4px solid #829b61;font-size:12px;line-height:1.55}
+
+
+/* GitHub-authorized TravelFrog source assets */
+:root{--source-assets:"jsmask/TravelFrog"}
+.garden-sky{background:url("https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/ui/haikei_niwa.png") center/cover no-repeat}
+.frog{width:107px;height:104px;background-image:url("https://raw.githubusercontent.com/jsmask/TravelFrog/master/assets/Texture/role/1/role1.png");background-repeat:no-repeat;background-size:1818px 123px;background-position:-1px -1px;left:44%;bottom:98px;filter:drop-shadow(0 5px 2px #0002);font-size:0}
+.frog-body,.frog .eye,.frog .mouth{display:none}
+.frog.travel{transform:translate(180px,-100px) rotate(-10deg) scale(.45);opacity:.1}
