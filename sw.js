@@ -1,1 +1,31 @@
-const CACHE="travel-frog-offline-v1";const ASSETS=["./","./index.html","./style.css","./app.js","./manifest.webmanifest"];self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));self.addEventListener("activate",e=>e.waitUntil(self.clients.claim()));self.addEventListener("fetch",e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(x=>{const copy=x.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return x}).catch(()=>caches.match("./")))));
+const CACHE="travel-frog-offline-v2";
+const LOCAL_ASSETS=["./","./index.html","./style.css","./app.js","./manifest.webmanifest"];
+const ONLINE_ASSET="https://www.hit-point.co.jp/games/tabikaeru/img/banner_tabikaeru.png";
+self.addEventListener("install",event=>{
+ event.waitUntil((async()=>{
+   const cache=await caches.open(CACHE);
+   await cache.addAll(LOCAL_ASSETS);
+   try{
+     const response=await fetch(ONLINE_ASSET,{mode:"no-cors"});
+     await cache.put(ONLINE_ASSET,response);
+   }catch(e){}
+   await self.skipWaiting();
+ })());
+});
+self.addEventListener("activate",event=>event.waitUntil(self.clients.claim()));
+self.addEventListener("fetch",event=>{
+ event.respondWith((async()=>{
+   const cached=await caches.match(event.request);
+   if(cached)return cached;
+   try{
+     const response=await fetch(event.request);
+     if(event.request.method==="GET"){
+       const copy=response.clone();
+       caches.open(CACHE).then(c=>c.put(event.request,copy)).catch(()=>{});
+     }
+     return response;
+   }catch(e){
+     return caches.match("./");
+   }
+ })());
+});
