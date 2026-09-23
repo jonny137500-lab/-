@@ -66,3 +66,13 @@ nav{display:flex;border-bottom:1px solid #ddceb0;position:sticky;top:62px;z-inde
 .brand img{display:block;width:112px;height:32px;object-fit:contain;object-position:left center}.brand small{display:block;margin-top:-2px}
 .clover-pill{display:flex;align-items:center;gap:5px}.clover-pill img{width:22px;height:22px;object-fit:contain}
 nav button{display:flex;align-items:center;justify-content:center;gap:5px}nav button img{width:25px;height:25px;object-fit:contain}
+
+
+/* Additional source artwork */
+.garden-light{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18;mix-blend-mode:screen;pointer-events:none;z-index:1}
+.scene-role{position:absolute;z-index:4;object-fit:contain;pointer-events:none;filter:drop-shadow(0 4px 2px #0002)}
+.scene-role.snail{width:92px;height:62px;left:5%;bottom:45px}
+.scene-role.visitor{width:105px;height:78px;right:4%;bottom:44px}
+.mailbox{padding:4px 7px;background:#e6d4a7;border-color:#8d7550}.mailbox img{width:38px;height:38px;display:block;object-fit:contain}.mail-badge{right:-7px;top:-8px}
+.menu-art{position:absolute;left:14px;top:14px;width:50px;height:50px;padding:4px;border-radius:12px;background:#f7ebcae8;border:1px solid #cdbb8c;z-index:7}.menu-art img{width:100%;height:100%;object-fit:contain}
+.lottery-art{height:105px;position:relative;display:grid;place-items:center;background:#eadab2;border-radius:10px;overflow:hidden}.lottery-base{position:absolute;width:100%;height:100%;object-fit:contain}.lottery-ball{position:relative;width:48px;height:48px;object-fit:contain;opacity:.35;transition:.25s}.lottery-art.show .lottery-ball{opacity:1;transform:scale(1.2) rotate(20deg)}
