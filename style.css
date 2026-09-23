@@ -31,3 +31,24 @@ nav{display:flex;border-bottom:1px solid #ddceb0;position:sticky;top:62px;z-inde
 .choice{display:flex;gap:8px;flex-wrap:wrap}.choice button{background:#fff8e5;border:1px solid #d9c79c;border-radius:18px;padding:7px 11px;color:#5c4a32}.choice button.selected{background:#829b61;color:white;border-color:#829b61}
 @media(min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}main{display:grid;grid-template-columns:1fr 1fr;max-width:1100px;margin:auto}.scene{height:calc(100vh - 62px);max-height:760px;position:sticky;top:62px}.panel{width:100%}}
 @media(max-width:520px){.official-banner{width:125px}.scene{height:390px}.wood-house{left:7%;right:7%}.grid{grid-template-columns:1fr}}
+
+/* 手绘纸张 / 原创青蛙与明信片视觉层 */
+.frog{width:82px;height:92px;font-size:0;left:44%;bottom:98px;filter:drop-shadow(0 5px 2px #0002);z-index:3}
+.frog-body{position:absolute;left:11px;top:17px;width:60px;height:62px;background:#8eaa69;border:4px solid #5d7348;border-radius:48% 48% 42% 42%}
+.frog-body:before,.frog-body:after{content:"";position:absolute;top:-13px;width:25px;height:25px;background:#8eaa69;border:4px solid #5d7348;border-radius:50%}
+.frog-body:before{left:-1px}.frog-body:after{right:-1px}
+.frog .eye{position:absolute;top:-4px;width:8px;height:8px;background:#3e382c;border-radius:50%;z-index:2}
+.frog .eye.left{left:8px}.frog .eye.right{right:8px}
+.frog .mouth{position:absolute;left:20px;top:30px;width:18px;height:9px;border-bottom:3px solid #4e4a38;border-radius:50%}
+.frog:after{content:"";position:absolute;left:2px;right:2px;bottom:-2px;height:13px;border-radius:50%;background:#7c975d}
+.frog.travel{transform:translate(180px,-100px) rotate(-10deg) scale(.45);opacity:.1}
+.mailbox{min-width:42px;text-align:center}.mail-badge{position:absolute;right:-8px;top:-9px;background:#b94c3e;border:2px solid #fff4d5;border-radius:20px;min-width:20px;height:20px;line-height:16px;font-size:10px;display:none}.mailbox.has-mail .mail-badge{display:inline-block}
+.postcard{position:relative;overflow:hidden;min-height:175px;border:7px solid #efe1bd;border-radius:5px;box-shadow:0 5px 12px #0002;background:#e8d6a5}
+.postcard:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,#fff6 0 18%,transparent 35% 100%)}
+.postcard .pc-scene{height:125px;display:grid;place-items:center;font-size:56px;position:relative}
+.postcard .pc-stamp{position:absolute;right:8px;bottom:8px;width:38px;height:32px;border:2px dashed #9d8261;background:#f8edd1;display:grid;place-items:center;font-size:15px}
+.postcard .pc-title{padding:7px 9px;background:#f8efd8;font-weight:700;font-size:13px}
+.postcard .pc-note{padding:0 9px 8px;background:#f8efd8;font-size:11px;color:#7b674c}
+.pc-field{min-height:130px;border-left:1px dashed #9b8564;background:#fbf2db;padding:12px}
+.destination-meadow{background:linear-gradient(#b9d9d0,#dce2ae 52%,#7f9c62)}.destination-forest{background:linear-gradient(#b5d0cb,#d5d7a2 55%,#718b62)}.destination-sea{background:linear-gradient(#9ccbd3,#e5d9ae 56%,#83a46c)}.destination-temple{background:linear-gradient(#c3d5cf,#e0d2aa 55%,#7b9068)}
+.mail-note{margin:12px 14px;padding:11px 13px;background:#f5e8c8;border-left:4px solid #829b61;font-size:12px;line-height:1.55}
